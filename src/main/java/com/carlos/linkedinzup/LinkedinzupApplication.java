@@ -2,8 +2,10 @@ package com.carlos.linkedinzup;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
+@EntityScan(basePackages = "com.carlos.linkedinzup.model")
 public class LinkedinzupApplication {
 
     public static void main(String[] args) {
