@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan(basePackages = "com.carlos.linkedinzup.model")
+@EntityScan(basePackages = "com.carlos.linkedinzup.domain.model")
 public class LinkedinzupApplication {
 
     public static void main(String[] args) {
