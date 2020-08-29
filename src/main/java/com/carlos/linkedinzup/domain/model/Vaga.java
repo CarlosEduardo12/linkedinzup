@@ -1,14 +1,9 @@
-package com.carlos.linkedinzup.model;
+package com.carlos.linkedinzup.domain.model;
 
-import com.carlos.linkedinzup.model.ValidationGroups.ValidationGroups;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.groups.ConvertGroup;
 
 @Entity
 @NoArgsConstructor
@@ -19,18 +14,12 @@ public class Vaga {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank
     private String cargo;
-
     private int disponivel;
 
     @Enumerated(EnumType.STRING)
     private StatusVagas status;
 
-    @Valid
-    @ConvertGroup(to = ValidationGroups.EmpresaId.class)
-    @NotNull
     @ManyToOne
     private Empresa empresa;
 }

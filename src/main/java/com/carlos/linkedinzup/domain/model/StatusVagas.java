@@ -1,4 +1,4 @@
-package com.carlos.linkedinzup.model;
+package com.carlos.linkedinzup.domain.model;
 
 public enum StatusVagas {
     aberta, fechada

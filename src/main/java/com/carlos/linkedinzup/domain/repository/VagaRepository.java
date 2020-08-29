@@ -1,6 +1,6 @@
-package com.carlos.linkedinzup.repository;
+package com.carlos.linkedinzup.domain.repository;
 
-import com.carlos.linkedinzup.model.Vaga;
+import com.carlos.linkedinzup.domain.model.Vaga;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

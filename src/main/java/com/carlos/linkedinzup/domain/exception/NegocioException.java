@@ -1,4 +1,4 @@
-package com.carlos.linkedinzup.exception;
+package com.carlos.linkedinzup.domain.exception;
 
 public class NegocioException extends RuntimeException {
     public NegocioException(String message){

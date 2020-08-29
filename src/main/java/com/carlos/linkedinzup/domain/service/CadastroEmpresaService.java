@@ -1,8 +1,8 @@
-package com.carlos.linkedinzup.service;
+package com.carlos.linkedinzup.domain.service;
 
-import com.carlos.linkedinzup.exception.NegocioException;
-import com.carlos.linkedinzup.model.Empresa;
-import com.carlos.linkedinzup.repository.EmpresaRepository;
+import com.carlos.linkedinzup.domain.exception.NegocioException;
+import com.carlos.linkedinzup.domain.model.Empresa;
+import com.carlos.linkedinzup.domain.repository.EmpresaRepository;
 import org.springframework.stereotype.Service;
 
 @Service

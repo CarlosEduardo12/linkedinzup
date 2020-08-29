@@ -1,4 +1,4 @@
-package com.carlos.linkedinzup.exception;
+package com.carlos.linkedinzup.api.exception;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;

@@ -1,11 +1,11 @@
-package com.carlos.linkedinzup.service;
+package com.carlos.linkedinzup.domain.service;
 
-import com.carlos.linkedinzup.exception.NegocioException;
-import com.carlos.linkedinzup.model.Empresa;
-import com.carlos.linkedinzup.model.StatusVagas;
-import com.carlos.linkedinzup.model.Vaga;
-import com.carlos.linkedinzup.repository.EmpresaRepository;
-import com.carlos.linkedinzup.repository.VagaRepository;
+import com.carlos.linkedinzup.domain.exception.NegocioException;
+import com.carlos.linkedinzup.domain.model.Empresa;
+import com.carlos.linkedinzup.domain.model.StatusVagas;
+import com.carlos.linkedinzup.domain.model.Vaga;
+import com.carlos.linkedinzup.domain.repository.EmpresaRepository;
+import com.carlos.linkedinzup.domain.repository.VagaRepository;
 import org.springframework.stereotype.Service;
 
 @Service

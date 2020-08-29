@@ -1,13 +1,13 @@
-package com.carlos.linkedinzup.controller;
+package com.carlos.linkedinzup.api.controller.empresa;
 
-import com.carlos.linkedinzup.model.Empresa;
-import com.carlos.linkedinzup.repository.EmpresaRepository;
-import com.carlos.linkedinzup.service.CadastroEmpresaService;
-import jakarta.validation.Valid;
+import com.carlos.linkedinzup.domain.model.Empresa;
+import com.carlos.linkedinzup.domain.repository.EmpresaRepository;
+import com.carlos.linkedinzup.domain.service.CadastroEmpresaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 

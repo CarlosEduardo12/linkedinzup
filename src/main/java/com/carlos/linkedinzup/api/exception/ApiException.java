@@ -1,6 +1,6 @@
-package com.carlos.linkedinzup.exception;
+package com.carlos.linkedinzup.api.exception;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.carlos.linkedinzup.domain.exception.NegocioException;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpHeaders;
@@ -19,8 +19,11 @@ import java.util.ArrayList;
 @ControllerAdvice
 public class ApiException extends ResponseEntityExceptionHandler {
 
-    @Autowired
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
+
+    public ApiException(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
     @ExceptionHandler(NegocioException.class)
     public ResponseEntity<Object> handleNegocio(NegocioException ex, WebRequest request){
