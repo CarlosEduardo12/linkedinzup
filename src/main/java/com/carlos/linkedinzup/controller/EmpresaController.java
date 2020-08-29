@@ -4,7 +4,6 @@ import com.carlos.linkedinzup.model.Empresa;
 import com.carlos.linkedinzup.repository.EmpresaRepository;
 import com.carlos.linkedinzup.service.CadastroEmpresaService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +15,12 @@ import java.util.Optional;
 @RequestMapping("/empresa")
 public class EmpresaController {
 
-    @Autowired
     private final EmpresaRepository empresaRepository;
+    private final CadastroEmpresaService cadastroEmpresa;
 
-    @Autowired
-    private CadastroEmpresaService cadastroEmpresa;
-
-
-    public EmpresaController(EmpresaRepository empresaRepository) {
+    public EmpresaController(EmpresaRepository empresaRepository, CadastroEmpresaService cadastroEmpresa) {
         this.empresaRepository = empresaRepository;
+        this.cadastroEmpresa = cadastroEmpresa;
     }
     @GetMapping
     public List<Empresa> listar(){
@@ -44,7 +40,7 @@ public class EmpresaController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Empresa> atualizar(@Valid @PathVariable Long id, @RequestBody Empresa empresa){
+    public ResponseEntity<Empresa> atualizar(@PathVariable Long id, @Valid @RequestBody Empresa empresa){
         if (!empresaRepository.existsById(id)){
             return ResponseEntity.notFound().build();
         }
@@ -53,7 +49,7 @@ public class EmpresaController {
         return ResponseEntity.ok(empresa);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<Void> remover(@PathVariable Long id){
         if (!empresaRepository.existsById(id)){
             return ResponseEntity.notFound().build();

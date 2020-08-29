@@ -16,7 +16,6 @@ import java.util.Optional;
 public class VagaController {
 
     private final VagaRepository vagaRepository;
-
     private final GestaoVagaService gestaoVaga;
 
     public VagaController(VagaRepository vagaRepository, GestaoVagaService gestaoVaga) {
