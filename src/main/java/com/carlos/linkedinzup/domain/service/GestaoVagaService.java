@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 public class GestaoVagaService {
 
     private final VagaRepository vagaRepository;
-
     private final EmpresaRepository empresaRepository;
 
     public GestaoVagaService(VagaRepository vagaRepository, EmpresaRepository empresaRepository) {
@@ -26,14 +25,11 @@ public class GestaoVagaService {
                 .orElseThrow(() -> new NegocioException("Empresa não encontrada"));
 
         vaga.setEmpresa(empresa);
-        if(vaga.getDisponivel() == 0){
-            vaga.setStatus(StatusVagas.fechada);
-        }
-        else{
-            vaga.setStatus(StatusVagas.aberta);
-        }
-        if (cargoAndEmpresa.getCargo().equals(vaga.getCargo()) && cargoAndEmpresa.getDisponivel() == vaga.getDisponivel()
-                && cargoAndEmpresa.getEmpresa().equals(vaga.getEmpresa())){
+        vaga.setStatus(vaga.getDisponivel() == 0 ? StatusVagas.fechada : StatusVagas.aberta);
+
+        if (cargoAndEmpresa != null && cargoAndEmpresa.getCargo().equals(vaga.getCargo()) &&
+                cargoAndEmpresa.getDisponivel() == vaga.getDisponivel() &&
+                cargoAndEmpresa.getEmpresa().equals(vaga.getEmpresa())){
             throw new NegocioException("Já existe uma cargo cadastrado com este nome para essa empresa.");
         }
         return vagaRepository.save(vaga);
