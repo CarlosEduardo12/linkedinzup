@@ -6,7 +6,7 @@ import lombok.Data;
 public class ResponseVagaDto {
     private Long id;
     private String cargo;
-    private String disponivel;
+    private int disponivel;
     private String status;
-    private ResponseEmpresaDto empresa;
+    private ResponseEmpresaId empresa;
 }

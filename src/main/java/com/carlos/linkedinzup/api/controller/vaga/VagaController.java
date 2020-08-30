@@ -37,7 +37,7 @@ public class VagaController {
     public ResponseEntity<ResponseVagaDto>buscar(@PathVariable Long id){
         Optional<Vaga> vaga = vagaRepository.findById(id);
         if (vaga.isPresent()){
-            ResponseVagaDto vagaModel = toModel(vaga.get());
+            ResponseVagaDto vagaModel = toDto(vaga.get());
             return ResponseEntity.ok(vagaModel);
         }
         return ResponseEntity.notFound().build();
@@ -47,18 +47,17 @@ public class VagaController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseVagaDto adicionar(@Valid @RequestBody RequestVagaDto requestVagaDto){
         Vaga vaga = ToEntity(requestVagaDto);
-        return toModel(gestaoVaga.criar(vaga));
+        return toDto(gestaoVaga.criar(vaga));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Vaga> atualizar(@PathVariable Long id, @Valid @RequestBody RequestVagaDto requestVagaDto){
+    public ResponseEntity<ResponseVagaDto> atuazlizar(@PathVariable Long id, @Valid @RequestBody RequestVagaDto requestVagaDto){
         if (!vagaRepository.existsById(id)){
             return ResponseEntity.notFound().build();
         }
         Vaga vaga = ToEntity(requestVagaDto);
         vaga.setId(id);
-        gestaoVaga.criar(vaga);
-        return ResponseEntity.ok(vaga);
+        return ResponseEntity.ok(toDto(gestaoVaga.criar(vaga)));
     }
 
     @DeleteMapping("{id}")
@@ -70,13 +69,12 @@ public class VagaController {
         return ResponseEntity.noContent().build();
     }
 
-    private ResponseVagaDto toModel(Vaga vaga){
+    private ResponseVagaDto toDto(Vaga vaga){
         return modelMapper.map(vaga, ResponseVagaDto.class);
-
     }
 
     private List<ResponseVagaDto> toCollectionModel(List<Vaga> vaga){
-        return vaga.stream().map(this::toModel).collect(Collectors.toList());
+        return vaga.stream().map(this::toDto).collect(Collectors.toList());
     }
 
     private Vaga ToEntity(RequestVagaDto requestVagaDto){

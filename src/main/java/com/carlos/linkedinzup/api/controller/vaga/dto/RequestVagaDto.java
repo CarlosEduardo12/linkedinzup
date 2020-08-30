@@ -12,7 +12,7 @@ public class RequestVagaDto {
     @NotBlank
     private String cargo;
 
-    @NotBlank
+    @NotNull
     private int disponivel;
 
     @Valid
