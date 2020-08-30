@@ -45,7 +45,7 @@ externo com as regras de negócios, casos de usos e entidades, arquitetado da se
     ___Spring___, definindo ___@Beans___ para que o nosso ___Framework___ possa gerenciar-lo também.
 
 
-![Estrutura Hexagonal](https://i.ibb.co/TYg6S63/carbon.png)
+![Estrutura Hexagonal](https://i.ibb.co/Gc7gS1s/carbon-1.png)
 
 #### Executando projeto local
 Para criação dessa aplicação foi usado JDK 11 tendo com principais dependências:
