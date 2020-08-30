@@ -23,6 +23,15 @@ public class CadastroEmpresaService {
         return empresaRepository.save(empresa);
     }
 
+    public Empresa editar(Empresa empresa){
+        Empresa empresaExistente = empresaRepository.findByCnpj(empresa.getCnpj());
+        if (empresaExistente != null && empresaExistente.getCnpj().equals(empresa.getCnpj()) &&
+                !empresaExistente.getId().equals(empresa.getId())){
+            throw new NegocioException("Já existe uma empresa cadastrada com este CNPJ.");
+        }
+        return empresaRepository.save(empresa);
+    }
+
     public void excluir(Long id){
         empresaRepository.deleteById(id);
     }
