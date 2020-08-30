@@ -4,7 +4,7 @@ import com.carlos.linkedinzup.api.controller.empresa.dto.RequestEmpresaDto;
 import com.carlos.linkedinzup.api.controller.empresa.dto.ResponseEmpresaDto;
 import com.carlos.linkedinzup.domain.model.Empresa;
 import com.carlos.linkedinzup.domain.repository.EmpresaRepository;
-import com.carlos.linkedinzup.domain.service.CadastroEmpresaService;
+import com.carlos.linkedinzup.domain.service.impl.CadastroEmpresaServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 public class EmpresaController {
 
     private final EmpresaRepository empresaRepository;
-    private final CadastroEmpresaService cadastroEmpresa;
+    private final CadastroEmpresaServiceImpl cadastroEmpresa;
     private final ModelMapper modelMapper;
 
-    public EmpresaController(EmpresaRepository empresaRepository, CadastroEmpresaService cadastroEmpresa, ModelMapper modelMapper) {
+    public EmpresaController(EmpresaRepository empresaRepository, CadastroEmpresaServiceImpl cadastroEmpresa, ModelMapper modelMapper) {
         this.empresaRepository = empresaRepository;
         this.cadastroEmpresa = cadastroEmpresa;
         this.modelMapper = modelMapper;

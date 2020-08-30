@@ -4,7 +4,7 @@ import com.carlos.linkedinzup.api.controller.vaga.dto.RequestVagaDto;
 import com.carlos.linkedinzup.api.controller.vaga.dto.ResponseVagaDto;
 import com.carlos.linkedinzup.domain.model.Vaga;
 import com.carlos.linkedinzup.domain.repository.VagaRepository;
-import com.carlos.linkedinzup.domain.service.GestaoVagaService;
+import com.carlos.linkedinzup.domain.service.impl.GestaoVagaServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 public class VagaController {
 
     private final VagaRepository vagaRepository;
-    private final GestaoVagaService gestaoVaga;
+    private final GestaoVagaServiceImpl gestaoVaga;
     private final ModelMapper modelMapper;
 
-    public VagaController(VagaRepository vagaRepository, GestaoVagaService gestaoVaga, ModelMapper modelMapper) {
+    public VagaController(VagaRepository vagaRepository, GestaoVagaServiceImpl gestaoVaga, ModelMapper modelMapper) {
         this.vagaRepository = vagaRepository;
         this.gestaoVaga = gestaoVaga;
         this.modelMapper = modelMapper;
