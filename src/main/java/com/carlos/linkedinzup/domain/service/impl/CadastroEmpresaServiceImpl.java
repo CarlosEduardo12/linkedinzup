@@ -6,6 +6,8 @@ import com.carlos.linkedinzup.domain.repository.EmpresaRepository;
 import com.carlos.linkedinzup.domain.service.CadastroEmpresaService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CadastroEmpresaServiceImpl implements CadastroEmpresaService {
 
@@ -16,18 +18,18 @@ public class CadastroEmpresaServiceImpl implements CadastroEmpresaService {
     }
     @Override
     public Empresa salvar(Empresa empresa) {
-        Empresa empresaExistente = empresaRepository.findByCnpj(empresa.getCnpj());
+        Optional<Empresa> empresaExistente = empresaRepository.findByCnpj(empresa.getCnpj());
 
-        if (empresaExistente != null && !empresaExistente.equals(empresa)){
+        if (empresaExistente.isPresent()){
             throw new NegocioException("Já existe uma empresa cadastrada com este CNPJ.");
         }
         return empresaRepository.save(empresa);
     }
     @Override
     public Empresa editar(Empresa empresa){
-        Empresa empresaExistente = empresaRepository.findByCnpj(empresa.getCnpj());
-        if (empresaExistente != null && empresaExistente.getCnpj().equals(empresa.getCnpj()) &&
-                !empresaExistente.getId().equals(empresa.getId())){
+        Optional<Empresa> empresaExistente = empresaRepository.findByCnpj(empresa.getCnpj());
+        if (empresaExistente.isPresent() && empresaExistente.get().getCnpj().equals(empresa.getCnpj()) &&
+                !empresaExistente.get().getId().equals(empresa.getId())){
             throw new NegocioException("Já existe uma empresa cadastrada com este CNPJ.");
         }
         return empresaRepository.save(empresa);
