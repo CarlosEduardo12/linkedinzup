@@ -46,7 +46,7 @@ public class VagaController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseVagaDto adicionar(@Valid @RequestBody RequestVagaDto requestVagaDto){
-        Vaga vaga = ToEntity(requestVagaDto);
+        Vaga vaga = toEntity(requestVagaDto);
         return toDto(gestaoVaga.criar(vaga));
     }
 
@@ -55,7 +55,7 @@ public class VagaController {
         if (!vagaRepository.existsById(id)){
             return ResponseEntity.notFound().build();
         }
-        Vaga vaga = ToEntity(requestVagaDto);
+        Vaga vaga = toEntity(requestVagaDto);
         vaga.setId(id);
         return ResponseEntity.ok(toDto(gestaoVaga.criar(vaga)));
     }
@@ -77,7 +77,7 @@ public class VagaController {
         return vaga.stream().map(this::toDto).collect(Collectors.toList());
     }
 
-    private Vaga ToEntity(RequestVagaDto requestVagaDto){
+    private Vaga toEntity(RequestVagaDto requestVagaDto){
         return modelMapper.map(requestVagaDto, Vaga.class);
     }
 }
