@@ -6,9 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface VagaRepository  extends JpaRepository<Vaga, Long> {
     @Query(value = "SELECT * FROM Vagas WHERE cargo = ?1 AND empresa_Id = ?2", nativeQuery = true)
-    Vaga findByCargoAndEmpresa(String cargo, Long id);
+    Optional<Vaga> findByCargoAndEmpresa(String cargo, Long id);
 
 }
