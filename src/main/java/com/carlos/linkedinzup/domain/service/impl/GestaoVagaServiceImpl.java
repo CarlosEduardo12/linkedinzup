@@ -9,8 +9,6 @@ import com.carlos.linkedinzup.domain.repository.VagaRepository;
 import com.carlos.linkedinzup.domain.service.GestaoVagaService;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class GestaoVagaServiceImpl implements GestaoVagaService {
 
@@ -24,17 +22,16 @@ public class GestaoVagaServiceImpl implements GestaoVagaService {
 
     @Override
     public Vaga criar(Vaga vaga) {
-        Optional<Vaga> cargoAndEmpresa = vagaRepository.findByCargoAndEmpresa(vaga.getCargo(), vaga.getEmpresa().getId());
-        Optional<Empresa> empresa = empresaRepository.findById(vaga.getEmpresa().getId());
-        empresa.ifPresentOrElse(vaga::setEmpresa, ()-> {
-                    throw new NegocioException("Empresa não existe.");
-        });
+        Vaga cargoAndEmpresa = vagaRepository.findByCargoAndEmpresa(vaga.getCargo(), vaga.getEmpresa().getId());
+        Empresa empresa = empresaRepository.findById(vaga.getEmpresa().getId())
+                .orElseThrow(() -> new NegocioException("Empresa não encontrada"));
 
+        vaga.setEmpresa(empresa);
         vaga.setStatus(vaga.getDisponivel() == 0 ? StatusVagas.fechada : StatusVagas.aberta);
 
-        if (cargoAndEmpresa.isPresent() && cargoAndEmpresa.get().getCargo().equals(vaga.getCargo()) &&
-                cargoAndEmpresa.get().getDisponivel() == vaga.getDisponivel() &&
-                cargoAndEmpresa.get().getEmpresa().equals(vaga.getEmpresa())){
+        if (cargoAndEmpresa != null && cargoAndEmpresa.getCargo().equals(vaga.getCargo()) &&
+                cargoAndEmpresa.getDisponivel() == vaga.getDisponivel() &&
+                cargoAndEmpresa.getEmpresa().equals(vaga.getEmpresa())){
             throw new NegocioException("Já existe uma cargo cadastrado com este nome para essa empresa.");
         }
         return vagaRepository.save(vaga);
