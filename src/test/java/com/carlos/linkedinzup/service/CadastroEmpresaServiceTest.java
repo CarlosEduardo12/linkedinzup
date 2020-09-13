@@ -64,10 +64,4 @@ public class CadastroEmpresaServiceTest {
         empresaB.setId((long) 2);
         sut.editar(empresaB);
     }
-
-    @Test
-    public void deve_excluir_empresa() {
-        sut.excluir(empresa.getId());
-        verify(empresaRepository).deleteById(empresa.getId());
-    }
 }
